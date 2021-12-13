@@ -1,0 +1,1 @@
+export const {addUser, findUser, removeUser, userExists} = require('./registration-service');

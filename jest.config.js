@@ -6,6 +6,6 @@ module.exports = {
   
     testEnvironment: 'node',
   
-    setupFilesAfterEnv: ['./singleton.ts'],
+    setupFilesAfterEnv: ['./context.ts'],
   
   }

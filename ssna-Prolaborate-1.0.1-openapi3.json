@@ -1,0 +1,136 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "description" : "This is an API to interact with the prolaborate database\n[http://swagger.io](http://swagger.io) or on\n[irc.freenode.net, #swagger](http://swagger.io/irc/).\n",
+    "version" : "1.0.1",
+    "title" : "Prolaborate",
+    "contact" : {
+      "email" : "natha.paquette@sparxsystems.us"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/ssna/Prolaborate/1.0.1"
+  }, {
+    "url" : "https://petstore.swagger.io/v2"
+  } ],
+  "paths" : {
+    "/prolaborate/group" : {
+      "post" : {
+        "summary" : "Add a new group to the prolaborate DB",
+        "operationId" : "addProlaborateGroup",
+        "security" : [ {
+          "BasicAuth" : [ ]
+        } ],
+        "responses" : {
+          "405" : {
+            "description" : "Invalid input"
+          },
+          "409" : {
+            "description" : "duplicate user"
+          },
+          "200" : {
+            "description" : "Successfull execution"
+          },
+          "500" : {
+            "description" : "Unsucessfull execution"
+          }
+        },
+        "requestBody" : {
+          "description" : "A Form-Data object containing user information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/group-schema"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/group-schema"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prolaborate/user" : {
+      "post" : {
+        "summary" : "Add a new user to the prolaborate DB",
+        "operationId" : "addProlaborateUser",
+        "security" : [ {
+          "BasicAuth" : [ ]
+        } ],
+        "responses" : {
+          "405" : {
+            "description" : "Invalid input"
+          },
+          "409" : {
+            "description" : "duplicate user"
+          },
+          "200" : {
+            "description" : "Successfull execution"
+          },
+          "500" : {
+            "description" : "Unsucessfull execution"
+          }
+        },
+        "requestBody" : {
+          "description" : "A Form-Data object containing user information",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/user-schema"
+              }
+            },
+            "multipart/form-data" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/user-schema"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "securitySchemes" : {
+      "BasicAuth" : {
+        "type" : "http",
+        "scheme" : "basic"
+      }
+    },
+    "schemas" : {
+      "user-schema" : {
+        "type" : "object",
+        "properties" : {
+          "group" : {
+            "type" : "string"
+          },
+          "firstName" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          },
+          "emailAddress" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "firstName", "lastName", "emailAddress" ]
+      },
+      "group-schema" : {
+        "type" : "object",
+        "properties" : {
+          "groupName" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "groupName" ]
+      }
+    }
+  }
+}

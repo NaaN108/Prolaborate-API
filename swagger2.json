@@ -1,0 +1,142 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "contact": {
+      "email": "natha.paquette@sparxsystems.us"
+    },
+    "description": "This is an API to interact with the prolaborate database\n[http://swagger.io](http://swagger.io) or on\n[irc.freenode.net, #swagger](http://swagger.io/irc/).\n",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "title": "Prolaborate",
+    "version": "1.0.1"
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/ssna/Prolaborate/1.0.1",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/prolaborate/group": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "description": "A Form-Data object containing user information",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/group-schema"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull execution"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "409": {
+            "description": "duplicate user"
+          },
+          "500": {
+            "description": "Unsucessfull execution"
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ],
+        "operationId": "addProlaborateGroup",
+        "summary": "Add a new group to the prolaborate DB"
+      }
+    },
+    "/prolaborate/user": {
+      "post": {
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "description": "A Form-Data object containing user information",
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/user-schema"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull execution"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "409": {
+            "description": "duplicate user"
+          },
+          "500": {
+            "description": "Unsucessfull execution"
+          }
+        },
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ],
+        "operationId": "addProlaborateUser",
+        "summary": "Add a new user to the prolaborate DB"
+      }
+    }
+  },
+  "definitions": {
+    "group-schema": {
+      "properties": {
+        "groupName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "groupName"
+      ],
+      "type": "object"
+    },
+    "user-schema": {
+      "properties": {
+        "emailAddress": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "group": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "emailAddress"
+      ],
+      "type": "object"
+    }
+  },
+  "securityDefinitions": {
+    "BasicAuth": {
+      "scheme": "basic",
+      "type": "http"
+    }
+  },
+  "x-components": {}
+}
